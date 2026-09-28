@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+jinja2
+python-dotenv
+pydantic
+google-genai
+pytest
+httpx
+
+fastapi
+uvicorn
+openai
+python-dotenv
+pydantic

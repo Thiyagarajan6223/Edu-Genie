@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenie</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .header {
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            min-height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>EduGenie</h1>
+        <p>AI Powered Learning Assistant</p>
+    </div>
+
+    <div class="container">
+        <div class="card">
+
+            <h2>Ask EduGenie</h2>
+
+            <textarea
+                id="question"
+                placeholder="Enter your question or paragraph here..."
+            ></textarea>
+
+            <button onclick="askQuestion()">Ask</button>
+
+            <div id="result">
+                Your answer will appear here...
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        async function askQuestion() {
+
+            const question = document.getElementById("question").value;
+            const result = document.getElementById("result");
+
+            if (!question.trim()) {
+                result.innerText = "Please enter a question.";
+                return;
+            }
+
+            result.innerText = "Generating answer...";
+
+            try {
+
+                const response = await fetch("/ask", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        question: question
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || "Request failed");
+                }
+
+                result.innerText =
+                    data.answer ||
+                    data.response ||
+                    data.result ||
+                    JSON.stringify(data, null, 2);
+
+            } catch (error) {
+
+                result.innerText =
+                    "Error: " + error.message;
+
+            }
+        }
+    </script>
+
+</body>
+</html>

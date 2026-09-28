@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduGenie</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>EduGenie</h1>
+        <p>AI Powered Learning Assistant</p>
+    </header>
+
+
+    <main class="container">
+
+        <div class="card">
+
+            <h2>Ask EduGenie</h2>
+
+            <p class="subtitle">
+                Choose what you want EduGenie to do.
+            </p>
+
+
+            <!-- TYPE LIST -->
+
+            <div class="type-list">
+
+                <label class="type-option selected">
+                    <input
+                        type="radio"
+                        name="type"
+                        value="question_ask"
+                        checked
+                    >
+
+                    <span>Question Ask</span>
+                </label>
+
+
+                <label class="type-option">
+                    <input
+                        type="radio"
+                        name="type"
+                        value="learning_path"
+                    >
+
+                    <span>Learning Path</span>
+                </label>
+
+
+                <label class="type-option">
+                    <input
+                        type="radio"
+                        name="type"
+                        value="quiz"
+                    >
+
+                    <span>Quiz</span>
+                </label>
+
+
+                <label class="type-option">
+                    <input
+                        type="radio"
+                        name="type"
+                        value="topic_explain"
+                    >
+
+                    <span>Topic Explain</span>
+                </label>
+
+
+                <label class="type-option">
+                    <input
+                        type="radio"
+                        name="type"
+                        value="summarize"
+                    >
+
+                    <span>Summarize</span>
+                </label>
+
+            </div>
+
+
+            <!-- QUESTION -->
+
+            <label class="question-label">
+                Enter your question
+            </label>
+
+            <textarea
+                id="question"
+                placeholder="Example: What is Python?"
+            ></textarea>
+
+
+            <!-- BUTTON -->
+
+            <button id="askButton">
+                Ask Question
+            </button>
+
+
+            <!-- RESPONSE -->
+
+            <div class="result-container">
+
+                <h3>EduGenie Response</h3>
+
+                <div id="result">
+                    Your answer will appear here...
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
+
